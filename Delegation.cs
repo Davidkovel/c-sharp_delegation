@@ -5,22 +5,44 @@ public class MathHandler
 
     public delegate void MathDelegate(double a, double b);
 
-    private MathDelegate _operations;
+    private MathDelegate? MakeAction { get; set; }
 
-    public MathHandler(params char[] args)
+    public MathHandler(params char[] operations)
     {
-        foreach (char c in args)
+        MakeAction = null;
+        foreach (char c in operations)
         {
             switch (c)
             {
                 case '+':
-                    _operations += (a, b) => Console.WriteLine($"Add: {a} + {b} = {a + b}");
+                    if (MakeAction == null)
+                    {
+                        MakeAction = Add;
+                    }
+                    else
+                    {
+                        MakeAction += Add;
+                    }
                     break;
                 case '-':
-                    _operations += (a, b) => Console.WriteLine($"Subtract: {a} - {b} = {a - b}");
+                    if (MakeAction == null)
+                    {
+                        MakeAction = Subtract;
+                    }
+                    else
+                    {
+                        MakeAction += Subtract;
+                    }
                     break;
                 case '*':
-                    _operations += (a, b) => Console.WriteLine($"Multiply: {a} * {b} = {a * b}");
+                    if (MakeAction == null)
+                    {
+                        MakeAction = Multiply;
+                    }
+                    else
+                    {
+                        MakeAction += Multiply;
+                    }
                     break;
                 default:
                     throw new ArgumentException($"Unsupported operation: {c}");
@@ -28,12 +50,13 @@ public class MathHandler
         }
     }
 
-    public static double Add(double a, double b) => a + b;
-    public static double Subtract(double a, double b) => a - b;
-    public static double Multiply(double a, double b) => a * b;
+    public static void Add(double a, double b) => Console.WriteLine($"Addition: {a} + {b} = {a + b}");
+    public static void Subtract(double a, double b) => Console.WriteLine($"Subtract: {a} - {b} = {a - b}");
+    public static void Multiply(double a, double b) => Console.WriteLine($"Multiply: {a} * {b} = {a * b}");
 
     public void Execute(double a, double b)
     {
-        _operations.Invoke(a, b);
+        MakeAction.Invoke(a, b); // -- same syntax MakeAction(a, b);
+
     }
 }

@@ -34,15 +34,14 @@ namespace Delegate
 
 /*
 Math Operations:
-Add: 10 + 5 = 15
+Addition: 10 + 5 = 15
 Subtract: 10 - 5 = 5
 Multiply: 10 * 5 = 50
 
 All methods executed successfully.
 Program execution completed.
 
-C:\Users\David\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.exe (process 10208) exited with code 0 (0x0).
+C:\Users\David\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\net8.0\ConsoleApp1.exe (process 13612) exited with code 0 (0x0).
 Press any key to close this window . . .
 
- 
 */
